@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'bootstrap-sass'
 gem 'cancan'
-gem "binding_of_caller"
+
 gem 'devise'
 gem 'figaro'
 gem 'rolify'
