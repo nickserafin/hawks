@@ -1,0 +1,24 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Environment variables (ENV['...']) can be set in the file config/application.yml.
+# See http://railsapps.github.io/rails-environment-variables.html
+saad = Article.create! name: "Brandon Saad to miss Flyers game", content: <<-ARTICLE
+Chicago Blackhawks forward Brandon Saad did not travel with the team Monday for its game against the Philadelphia Flyers on Tuesday, according to a team spokesperson.
+Saad suffered an upper-body injury against the Detroit Red Wings in the second period on Sunday and missed the remainder of the game. Blackhawks coach Joel Quenneville said Sunday he did not believe Saad's injury was serious. Saad was expected to be re-evaluated on Monday.
+Saad has not missed a game this season. He is tied for first on the Blackhawks with a plus-29 rating and is sixth on the team with 44 points. He has 19 goals and 25 assists in 68 games this season.
+ARTICLE
+
+puts 'ROLES'
+YAML.load(ENV['ROLES']).each do |role|
+  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+  puts 'role: ' << role
+end
+puts 'DEFAULT USERS'
+user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+puts 'user: ' << user.name
+user.add_role :admin

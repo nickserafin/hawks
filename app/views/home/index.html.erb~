@@ -1,0 +1,8 @@
+<h3>Blackhawks Blog</h3>
+<% @users.each do |user| %>
+  <p>User: <%=link_to user.name, user %></p>
+<% end %>
+<br>
+<p>The Hawks are back at it this season and are rolling with a great record into the playoffs</p>
+
+<p><%= link_to "Articles", articles_path %></p>
